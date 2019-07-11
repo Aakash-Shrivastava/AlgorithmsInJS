@@ -49,3 +49,13 @@ window.processForm = function () {
 window.resetForm = function () {
     document.getElementById('testform').reset();
 }
+
+
+
+// ************************************************************************
+// removing all child nodes
+
+var myNode = document.getElementById("foo");
+while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+}

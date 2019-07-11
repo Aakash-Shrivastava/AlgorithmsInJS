@@ -1,0 +1,63 @@
+<div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#news">News</a>
+    <div class="dropdown">
+        <a href="#">Dropdown </a>
+        <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .navbar {
+        background-color: #333;
+        height: 32px;
+    }
+
+    .navbar a {
+        color: white;
+        font-size: 16px;
+        text-decoration: none;
+        float: left;
+        padding: 7px;
+    }
+
+    .navbar a:hover {
+        background-color: red;
+    }
+
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        width: 87px;
+        flex-direction: column;
+        background-color: #eee;
+        top: 32px;
+        left: 110px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        width: 73px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+</style>

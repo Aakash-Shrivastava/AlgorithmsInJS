@@ -89,5 +89,74 @@ body {
 <h3>Dropdown Menu inside a Navigation Bar</h3>
 <p>Hover over the "Dropdown" link to see the dropdown menu.</p>
 
+
+*****************************************************************************************************************
+
+div{
+    transition: 0s background-color;
+}
+
+div:hover{
+    background-color:red;    
+    transition-delay:1s;
+}
+
+div{
+  transition-property: width;
+  transition-duration: 5s;
+  transition-delay: 2s;
+}
+
+div:hover {
+  width: 300px;
+}
+
+
+CSS Traingle 
+
+div{
+  width:0px;
+  height:0px;
+  border-bottom: solid 50px blue;
+  border-left: solid 50px transparent;
+  border-right: solid 50px transparent;
+}
+
+
+*********************************************************************************************************
+
+
+<script type="text/javascript">
+    function processData(input) {
+    //Enter your code here
+    let newArray = [];
+    input.split("\n").forEach((b) =>{
+        newArray.push(b.split(":"))
+    })
+    newArray = newArray.splice(1);
+    var map = new Map();
+    newArray.forEach((a)=>{
+    
+        d = a[1].replace(/[()]/g,'-').split("-");
+        d.forEach((a,index)=>{d[index] = +d[index]})
+        let e = d.reduce((a,b)=>a+b)
+
+        map.set(`${a[0].trim()}.`,e)
+    })
+    Array.from(map).sort((a,b)=>{return a[1]-b[1]}).forEach((a)=>{console.log(a[0])})
+} 
+
+
+
+var myEvent = new CustomEvent("userLogin", {
+	detail: {
+		username: "davidwalsh"
+	},
+	bubbles: true,
+	cancelable: false
+});
+
+</script>
+
 </body>
 </html>
