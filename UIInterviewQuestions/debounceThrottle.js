@@ -1,3 +1,5 @@
+// "execute this function only if 100 milliseconds have passed without it being called."
+
 const debounce = (func, delay) => {
     let debounceTimer;
     return function () {
@@ -7,6 +9,9 @@ const debounce = (func, delay) => {
       debounceTimer = setTimeout(func.apply(context, args), delay)
     }
   }
+
+
+// "execute this function at most once every 100 milliseconds."
   
   const throttle = (func, limit) => {
     let inThrottle;
