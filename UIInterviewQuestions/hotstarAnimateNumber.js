@@ -12,7 +12,7 @@ function animate(delay){
   let i =initialVal;
   let myInterval;
   myInterval = setInterval(function(){
-    	myNumberElem.textContent = i++;
+    myNumberElem.textContent = i++;
       if(i === 1001)
       clearInterval(myInterval)
   },delay)

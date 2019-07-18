@@ -27,4 +27,4 @@ var makeString = function (myObj) {
 }
 makeString(myObj);
 
-console.log(arrayOfString.toString().split(",").join(" "));
+console.log(arrayOfString.join(" "));
