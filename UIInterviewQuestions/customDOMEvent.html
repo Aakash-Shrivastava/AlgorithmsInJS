@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+    <div>click me</div>​​​​​
+
+    <script>
+
+        var divElement = document.querySelector('div');
+
+        //create the custom event
+        var cheer = document.createEvent('CustomEvent'); //the 'CustomEvent' parameter is required
+
+        //create an event listener for the custom event
+        divElement.addEventListener('goBigBlue', function (event) {
+            console.log(event.detail.goBigBlueIs)
+        }, false);
+
+        /*Use the initCustomEvent method to setup the details of the custom event.
+        Parameters for initCustomEvent are: (event, bubble?, cancelable?, pass values to event.detail)*/
+        cheer.initCustomEvent('goBigBlue', true, false, { goBigBlueIs: 'its gone!' });
+
+        //invoke the custom event using dispatchEvent
+        divElement.dispatchEvent(cheer);
+
+    </script>
+</body>
