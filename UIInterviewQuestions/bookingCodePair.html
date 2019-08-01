@@ -42,6 +42,8 @@
                     bottom: 30px;
                     line-height: 20px;
                     text-align: center;
+                    cursor:none;
+                    text-transform:capitalize;
                 }
             </style>    
     </head>
@@ -112,8 +114,9 @@
 
             // Generic tooltip solution
             let tooltip = document.querySelector('.tooltip');
+            let toolTipData;
             document.body.addEventListener('mouseover', function (evt) {
-                if (evt.target.classList.contains('white')) {
+                if (evt.target.classList.contains('white') || evt.target.classList.contains('tooltip')) {
 
                     let element = evt.target;    
                     let coOrdinates = element.getBoundingClientRect();
@@ -125,7 +128,8 @@
                     tooltip.style.top = posY + "px";
                     tooltip.style.display = "block";
                     
-                    let elemenToolTipContent = element.getAttribute('data');
+                    toolTipData = element.getAttribute('data') !== null ? element.getAttribute('data'): toolTipData;
+                    let elemenToolTipContent = toolTipData;
                     
                     tooltip.innerHTML = elemenToolTipContent;
                 }
