@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <title>Chessboard using Pure CSS and HTML</title>
+            <style type="text/css">
+                .parent {
+                    float: left;
+                    width: 256px;
+                    height: 256px;
+                }
+
+                .white {
+                    float: left;
+                    width: 60px;
+                    height: 60px;
+                    background-color: #9e9e9e;
+                    font-size:50px;
+                    text-align:center;
+                    display: table-cell;
+                    vertical-align:middle;
+                    margin:2px;   
+                }
+                .white.pawn::before {
+                    content: '\265f';
+                    text-align:center;
+                    font-size:30px;
+                    line-height:60px;
+                    bottom:8px;
+                    position:relative;
+                }
+
+                .tooltip{
+                    display:none;
+
+                    font-size: 12px;
+                    width: 100px;
+                    height: 20px;
+                    border-radius: 3px;
+                    background-color: blue;
+                    color: white;
+                    position: absolute;
+                    bottom: 30px;
+                    line-height: 20px;
+                    text-align: center;
+                }
+            </style>    
+    </head>
+        <body>
+            <div class="tooltip"></div>
+            
+            <div>
+                <button onClick = "start()">
+                Play
+                </button>
+                <button onClick = "stop()">
+                Stop
+                </button>
+            </div>
+            
+            <div class="parent" onClick = "moveToTarget(event)">
+                <div class="white pawn" data = "first element"></div>
+                <div class="white" data = "second element"></div>
+                <div class="white" data = "third element"></div>
+                <div class="white" data = "fourth element"></div>
+                <div class="white" data = "fifth element"></div>
+                <div class="white" data = "sixth element"></div>
+                <div class="white" data = "seventh element"></div>
+                <div class="white" data = "eighth element"></div>
+                <div class="white" data = "nineth element"></div>
+                <div class="white" data = "tenth element"></div>
+                <div class="white" data = "eleventh element"></div>
+                <div class="white" data = "twelveth element"></div>
+                <div class="white" data = "thirteenth element"></div>
+                <div class="white" data = "fourteenth element"></div>
+                <div class="white" data = "fifteenth element"></div>
+                <div class="white" data = "sixteenth element"></div>
+            </div>
+        </body>
+        <script type = "text/javascript">
+
+
+            // Interview Solution
+            let boxes = document.querySelectorAll('.white');
+            let myInterval;
+
+
+            window.play = function(){
+                let currentBox = document.querySelector('.pawn');
+                if(currentBox === boxes[boxes.length-1]){
+                    return;
+                }
+                currentBox.classList.remove("pawn");
+                currentBox.nextElementSibling.classList.add("pawn");
+            }
+
+            window.moveToTarget = function(event){
+                clearInterval(myInterval);
+                let currentBox = document.querySelector('.pawn');
+                currentBox.classList.remove("pawn");
+                event.target.classList.add("pawn");
+            }
+
+            window.start = function(){
+                myInterval = setInterval(play,300);
+            }
+            window.stop = function(){
+                clearInterval(myInterval);
+            }
+
+
+
+
+            // Generic tooltip solution
+            let tooltip = document.querySelector('.tooltip');
+            document.body.addEventListener('mouseover', function (evt) {
+                if (evt.target.classList.contains('white')) {
+
+                    let element = evt.target;    
+                    let coOrdinates = element.getBoundingClientRect();
+                    
+                    let posX = coOrdinates.x;
+                    let posY = coOrdinates.y;
+                        
+                    tooltip.style.left = posX + "px";
+                    tooltip.style.top = posY + "px";
+                    tooltip.style.display = "block";
+                    
+                    let elemenToolTipContent = element.getAttribute('data');
+                    
+                    tooltip.innerHTML = elemenToolTipContent;
+                }
+                else{
+                    tooltip.style.display = "none";
+                }
+        });
+        </script>
+</html>
