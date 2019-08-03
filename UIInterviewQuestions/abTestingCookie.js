@@ -15,3 +15,4 @@ if (random <= 50) {
 } else {
     document.cookie = "DriftPlaybook=B"
 }
+    

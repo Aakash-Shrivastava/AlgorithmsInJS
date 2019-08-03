@@ -4,6 +4,8 @@ let allCountries;
 let resultConatiner = document.getElementById("result-container");
 let jsonContainer = document.getElementById("json-container");
 let inputContainer = document.getElementById("input-container");
+let listElements = document.getElementsByClassName("country-list");
+
 
 window.onload = async function () {
   let { allCountries, countryMap } = await getCountryList()
@@ -12,11 +14,10 @@ window.onload = async function () {
 function searchCountryList(event) {
   let inputText = event.target.value.toLowerCase();
 
-  while (resultConatiner.firstChild) {
-    resultConatiner.removeChild(resultConatiner.firstChild);
-  }
-
-  if (inputText) {
+  if (inputText !== "" && ((event.keyCode >= 48 && event.keyCode <= 90) || event.keyCode == 8)) {
+    while (resultConatiner.firstChild) {
+      resultConatiner.removeChild(resultConatiner.firstChild);
+    }
     let searchresults = searchList(allCountries, inputText);
     //console.log(searchresults);
 
@@ -43,10 +44,54 @@ function searchCountryList(event) {
 
       resultConatiner.appendChild(fragment)
     }
+    listElements[0].classList.add("selected");
+  } else if (event.keyCode == 8 && inputText == "") {
+    let countrylist = document.querySelectorAll(".country-tag");
+    removeInputTag(null, countrylist[countrylist.length - 1].textContent);
+    countrylist[countrylist.length - 1].remove();
+  }
+  else {
+    
+    //Code to support keyboard for up and down in list
+    
+    let selectedNode = document.querySelector(".country-list.selected");
+    if (event.keyCode == 40 && selectedNode) {
+      if (selectedNode == listElements[listElements.length - 1]) {
+        listElements[0].classList.add("selected");
+        listElements[0].scrollIntoView(0);
+      } else {
+
+        selectedNode.classList.remove("selected");
+        selectedNode.nextElementSibling.classList.add("selected");
+
+        let newSelectedNode = document.querySelector(".country-list.selected");
+        newSelectedNode.scrollIntoView(0);
+      }
+    } else if (event.keyCode == 38 && selectedNode) {
+      if (selectedNode == listElements[0]) {
+        selectedNode.classList.remove("selected");
+        listElements[listElements.length -1].classList.add("selected");
+        document.querySelector(".country-list.selected").scrollIntoView(0);
+      } else {
+        selectedNode.classList.remove("selected");
+        selectedNode.previousElementSibling.classList.add("selected");
+
+        let newSelectedNode = document.querySelector(".country-list.selected");
+        newSelectedNode.scrollIntoView(0);
+      }
+    }
+    else if (event.keyCode == 13) {
+      let selectedNode = document.querySelector(".country-list.selected");
+      countryClicked(null, selectedNode.getAttribute("data-code"))
+    } else if (!inputText) {
+      while (resultConatiner.firstChild) {
+        resultConatiner.removeChild(resultConatiner.firstChild);
+      }
+    }
   }
 }
 
-function countryClicked(event) {
+function countryClicked(event, code) {
   // Adding data to json 
   let dataForJson;
 
@@ -56,7 +101,7 @@ function countryClicked(event) {
     resultConatiner.removeChild(resultConatiner.firstChild);
   }
 
-  let countryCode = event.target.getAttribute("data-code");
+  let countryCode = event ? event.target.getAttribute("data-code") : code;
   console.log(countryMap[countryCode]);
 
 
@@ -80,6 +125,7 @@ function countryClicked(event) {
 
   let tagSpan = document.createElement('span');
   tagSpan.setAttribute('class', 'country-tag');
+  tagSpan.setAttribute('id', countryCode);
   tagSpan.textContent = countryCode;
 
   let span = document.createElement('span');
@@ -92,13 +138,14 @@ function countryClicked(event) {
 
 }
 
-function removeInputTag(event) {
+function removeInputTag(event, code) {
 
-  let elementToBeRemoved = event.target.parentElement;
+  let elementToBeRemoved = event ? event.target.parentElement : document.getElementById(code);
 
   inputContainer.removeChild(elementToBeRemoved);
 
-  document.getElementById(event.target.parentElement.textContent).remove();
+  let jsonToRemove = event ? event.target.parentElement.textContent : code;
+  document.getElementById(jsonToRemove).remove();
   tags = document.getElementsByClassName('country-tag').length;
   if (tags == 0) {
     jsonContainer.innerHTML = "";

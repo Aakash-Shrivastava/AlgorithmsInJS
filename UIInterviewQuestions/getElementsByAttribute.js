@@ -12,4 +12,5 @@ function getElementsByAttribute(attribute){
     }
     return found;
   }
-     
+   
+  

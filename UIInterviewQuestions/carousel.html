@@ -1,0 +1,113 @@
+<!doctype>
+<html>
+<style>
+	.carousel {
+		padding-top: 20px;
+		width: 1800px;
+		overflow: hidden;
+		height: 50px;
+		position: relative;
+	}
+
+	.carousel ul {
+		position: relative;
+		list-style: none;
+		list-style-type: none;
+		margin: 0;
+		height: 50px;
+		padding: 0;
+	}
+
+	.carousel ul li {
+		position: absolute;
+		height: 250px;
+		width: 250px;
+		float: left;
+		margin-right: 1px;
+		background: #f2f2f2;
+		text-align: center;
+		padding-top: 25px;
+	}
+</style>
+
+<body>
+	<a href="javascript:void(0);" class="btnPrevious">Previous</a>
+	<a href="javascript:void(0);" class="btnNext">Next</a>
+	<div class="carousel">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+			<li>13</li>
+			<li>14</li>
+		</ul>
+	</div>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+		integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script>
+		$(function () {	
+			var carousel = $('.carousel ul');
+			var carouselChild = carousel.find('li');
+			var clickCount = 0;
+
+			itemWidth = carousel.find('li:first').width() + 1; //Including margin
+
+			//Set Carousel width so it won't wrap
+			carousel.width(itemWidth * carouselChild.length);
+
+			//Place the child elements to their original locations.
+			refreshChildPosition();
+
+			//Set the event handlers for buttons.
+			$('.btnNext').click(function () {
+				clickCount++;
+
+				//Animate the slider to left as item width 
+				carousel.finish().animate({
+					left: '-=' + itemWidth
+				}, 300, function () {
+					//Find the first item and append it as the last item.
+					lastItem = carousel.find('li:first');
+					lastItem.remove().appendTo(carousel);
+					lastItem.css('left', ((carouselChild.length - 1) * (itemWidth)) + (clickCount * itemWidth));
+				});
+			});
+
+			$('.btnPrevious').click(function () {
+				clickCount--;
+				//Find the first item and append it as the last item.
+				lastItem = carousel.find('li:last');
+				lastItem.remove().prependTo(carousel);
+
+				lastItem.css('left', itemWidth * clickCount);
+				//Animate the slider to right as item width 
+				carousel.finish().animate({
+					left: '+=' + itemWidth
+				}, 300);
+			});
+
+			function refreshChildPosition() {
+				carouselChild.each(function () {
+					$(this).css('left', itemWidth * carouselChild.index($(this)));
+				});
+			}
+
+			function refreshChildPositionNext() {
+				carouselChild.each(function () {
+					leftVal = parseInt($(this).css('left'));
+				});
+			}
+		});
+	</script>
+</body>
+
+</html>

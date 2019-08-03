@@ -18,3 +18,64 @@
         <li>14</li>
     </ul>
 </div>
+
+
+<style>
+    .carousel {
+        width: 800px;
+        height: 50px;
+        overflow: hidden;
+    }
+
+    .carousel ul {
+        list-style: none;
+        width: 1430px;
+        height: 50px;
+        padding: 0;
+    }
+
+    .carousel ul li {
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        float: left;
+        margin: 1px;
+        background-color: #ddd;
+        text-align: center;
+    }
+</style>
+
+
+<script type="text/javascript">
+
+    var ulElement = document.getElementsByTagName("ul")[0];
+
+    var myInterval = setInterval(function () {
+        nextClick();
+    }, 1000)
+
+    nextClick = function (e) {
+
+        if (e && e.target.classList.contains("btnNext")) {
+            clearInterval(myInterval);
+        }
+
+        var firstChild = document.getElementsByTagName("li")[0];
+
+        ulElement.removeChild(firstChild);
+        ulElement.appendChild(firstChild);
+    }
+
+    prevClick = function (e) {
+        if (e && e.target.classList.contains("btnPrevious")) {
+            clearInterval(myInterval);
+        }
+
+        var lastChild = document.getElementsByTagName("li")[document.getElementsByTagName("li").length - 1];
+
+        ulElement.removeChild(lastChild);
+        ulElement.insertBefore(lastChild, ulElement.firstChild);
+    }
+
+
+</script>
