@@ -51,9 +51,9 @@ function searchCountryList(event) {
     countrylist[countrylist.length - 1].remove();
   }
   else {
-    
+
     //Code to support keyboard for up and down in list
-    
+
     let selectedNode = document.querySelector(".country-list.selected");
     if (event.keyCode == 40 && selectedNode) {
       if (selectedNode == listElements[listElements.length - 1]) {
@@ -70,7 +70,7 @@ function searchCountryList(event) {
     } else if (event.keyCode == 38 && selectedNode) {
       if (selectedNode == listElements[0]) {
         selectedNode.classList.remove("selected");
-        listElements[listElements.length -1].classList.add("selected");
+        listElements[listElements.length - 1].classList.add("selected");
         document.querySelector(".country-list.selected").scrollIntoView(0);
       } else {
         selectedNode.classList.remove("selected");
@@ -102,40 +102,39 @@ function countryClicked(event, code) {
   }
 
   let countryCode = event ? event.target.getAttribute("data-code") : code;
-  console.log(countryMap[countryCode]);
+
+  if (!document.getElementById(countryCode)) {
+    if (jsonContainer.childElementCount > 0) {
+      dataForJson = `<br>  <div id="${countryCode}">${JSON.stringify(countryMap[countryCode])}</div>`
+    } else {
+      dataForJson = `<strong>Countries:</strong>[ <div id="${countryCode}">${JSON.stringify(countryMap[countryCode])}]</div>`
+    }
+
+    let div = document.createElement('div');
+    // div.setAttribute('class', 'country-list');
+    div.innerHTML = dataForJson;
+    jsonContainer.appendChild(div);
 
 
-  if (jsonContainer.childElementCount > 0) {
-    dataForJson = `<br>  <div id="${countryCode}">${JSON.stringify(countryMap[countryCode])}</div>`
-  } else {
-    dataForJson = `<strong>Countries:</strong>[ <div id="${countryCode}">${JSON.stringify(countryMap[countryCode])}]</div>`
+    // Adding Tag to input
+    let inputBox = document.getElementById("countryText");
+
+    let fragment = document.createDocumentFragment();
+
+
+    let tagSpan = document.createElement('span');
+    tagSpan.setAttribute('class', 'country-tag');
+    tagSpan.setAttribute('id', countryCode);
+    tagSpan.textContent = countryCode;
+
+    let span = document.createElement('span');
+    span.setAttribute('class', 'remove');
+    span.setAttribute('onClick', 'removeInputTag(event)');
+    tagSpan.appendChild(span);
+    fragment.appendChild(tagSpan);
+
+    inputContainer.insertBefore(fragment, inputBox)
   }
-
-  let div = document.createElement('div');
-  // div.setAttribute('class', 'country-list');
-  div.innerHTML = dataForJson;
-  jsonContainer.appendChild(div);
-
-
-  // Adding Tag to input
-  let inputBox = document.getElementById("countryText");
-
-  let fragment = document.createDocumentFragment();
-
-
-  let tagSpan = document.createElement('span');
-  tagSpan.setAttribute('class', 'country-tag');
-  tagSpan.setAttribute('id', countryCode);
-  tagSpan.textContent = countryCode;
-
-  let span = document.createElement('span');
-  span.setAttribute('class', 'remove');
-  span.setAttribute('onClick', 'removeInputTag(event)');
-  tagSpan.appendChild(span);
-  fragment.appendChild(tagSpan);
-
-  inputContainer.insertBefore(fragment, inputBox)
-
 }
 
 function removeInputTag(event, code) {
