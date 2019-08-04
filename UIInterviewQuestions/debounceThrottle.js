@@ -14,14 +14,14 @@ const debounce = (func, delay) => {
 // "execute this function at most once every 100 milliseconds."
   
   const throttle = (func, limit) => {
-    let inThrottle;
+    let inThrottle = true;
     return function () {
       const context = this;
       const args = arguments;
-      if (!inThrottle) {
+      if (inThrottle) {
         func.apply(context, args);
-        inThrottle = true;
-        setTimeout(() => inThrottle = false, limit)
+        inThrottle = false;
+        setTimeout(() => inThrottle = true, limit)
       }
     }
   }
