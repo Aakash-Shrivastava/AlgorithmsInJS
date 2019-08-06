@@ -1,0 +1,44 @@
+<div></div>
+<style>
+  /* Transition */
+    /* 
+    transition-property: font-size;
+    transition-duration: 4s;
+    transition-delay: 2s;
+    transition-timing-function: ease-in; 
+    */
+
+  div {
+    transition: width 1s ease-in;
+    width: 100px;
+    height: 30px;
+    background-color: red;
+  }
+
+  div:hover {
+    width: 300px;
+  }
+
+  /* Animation */
+    /* 
+    animation-name:slide;
+    animation-duration:2s;
+    animation-delay:2s;
+    animation-timing-function:infinite; */
+
+    div:hover {
+    animation: slide 2s infinite;
+    }
+
+  @keyframes slide {
+    0% {
+      transform: translate3d(0px, 0px, 0px);
+    }
+    50% {
+      transform: translate3d(300px, 0px, 0px);
+    }
+    100% {
+      transform: translate3d(0px, 0px, 0px);
+    }
+  }
+</style>
