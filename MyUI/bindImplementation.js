@@ -1,24 +1,20 @@
-let bind = function (func, context) {
-    let previousArgs = [...arguments];
-    return function () {
-        let currentArgs = [...arguments];
+Function.prototype.mybind = function (...args) {
+    let context = this;
+    let previousArgs = args.slice(1);
+    return function (...currentArgs) {
         let combinedArgs = [...previousArgs, ...currentArgs];
-        return func.apply(context, combinedArgs);
+        context.apply(args[0], combinedArgs);
     }
 };
 
-
-
-var module = {
-    x: 42,
-    getX: function () {
-        return this.x;
-    }
+let name = {
+    firstname: "Aakash",
+    lastname: "Shrivastava"
 }
 
-var unboundGetX = module.getX;
-console.log(unboundGetX()); // The function gets invoked at the global scope
-// expected output: undefined
+let printName = function (hometown, state, country) {
+    console.log(this.firstname + " " + this.lastname + " , " + hometown + ", " + state + ", " + country);
+}
 
-var boundGetX = unboundGetX.bind(module);
-console.log(boundGetX());
+let printMyName2 = printName.mybind(name, "Dehradun", "Uttarakhand");
+printMyName2("India");
