@@ -1,5 +1,25 @@
 <div></div>
 <style>
+/* 
+Use css tranform property to move, scale, rotate content.
+Use translate3d or scale 3d to ensure all transformations are hapeening on the GPU.
+
+To ensure your markup works for the largest number of browsers, be sure to either provide
+vendor prefixes for the transform property or use an awesome library like -prefix-free.
+
+Eg.
+ */
+.my-div{
+  transform: translate3d(0px,0px,0px);
+  transition: transform 0.5s ease-in-out;
+}
+
+.my-div:hover{
+  transform: translate3d(0px,-150px,0px);
+}
+
+
+
   /* Transition */
     /* 
     transition-property: font-size;
