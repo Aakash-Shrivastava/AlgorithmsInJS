@@ -61,12 +61,6 @@ class Promifill {
     }
 }
 
-function get(url) {
-    return new Promifill(function (resolve, reject) {
-
-    })
-}
-
 let getCountryList = function () {
     return new Promifill((resolve, reject) => {
         fetch('https://restcountries.eu/rest/v2/all')
