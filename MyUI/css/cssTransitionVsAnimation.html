@@ -1,6 +1,27 @@
-<div></div>
+<!-- 
+preload is a declarative fetch, allowing you to force the browser to make a request for a resource without
+blocking the document’s onload event.
+Prefetch is a hint to the browser that a resource might be needed, but delegates deciding whether and when
+loading it is a good idea or not to the browser.
+-->
+
+<!-- Variables in css or Custom Properties -->
+
 <style>
-/* 
+  :root {
+    --main-bg-color: brown;
+  }
+  div {
+    color: var(--main-color);
+  }
+  .two {
+    color: var(--my-var, red); /* Red if --my-var is not defined */
+  }
+  /* element.style.getPropertyValue("--my-var"); */
+</style>
+
+<style>
+  /* 
 Use css tranform property to move, scale, rotate content.
 Use translate3d or scale 3d to ensure all transformations are hapeening on the GPU.
 
@@ -9,28 +30,26 @@ vendor prefixes for the transform property or use an awesome library like -prefi
 
 Eg.
  */
-.my-div{
-  transform: translate3d(0px,0px,0px);
-  transition: transform 0.5s ease-in-out;
-}
+  .my-div {
+    transform: translate3d(0px, 0px, 0px);
+    transition: transform 0.5s ease-in-out;
+  }
 
-.my-div:hover{
-  transform: translate3d(0px,-150px,0px);
-}
-
-
+  .my-div:hover {
+    transform: translate3d(0px, -150px, 0px);
+  }
 
   /* Transition */
-    /* 
+  /* 
     transition-property: font-size;
     transition-duration: 4s;
     transition-delay: 2s;
     transition-timing-function: ease-in; 
     */
 
-    div {
-      transition: <property> <duration> <timing-function> <delay>;
-    }
+  div {
+    transition: <property> <duration> <timing-function> <delay>;
+  }
 
   div {
     transition: width 1s ease-in;
@@ -38,21 +57,20 @@ Eg.
     height: 30px;
     background-color: red;
   }
-
-  div:hover {
+  ` div:hover {
     width: 300px;
   }
 
   /* Animation */
-    /* 
+  /* 
     animation-name:slide;
     animation-duration:2s;
     animation-delay:2s;
     animation-timing-function:infinite; */
 
-    div:hover {
+  div:hover {
     animation: slide 2s infinite;
-    }
+  }
 
   @keyframes slide {
     0% {
