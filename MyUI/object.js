@@ -220,3 +220,8 @@ let b = a.slice(0)
 })().then(()=>{
 	console.log("done")
 });
+
+
+// Operators
+// && : The first falsy value gets returned, if there is none, the last truthy value is being returned.
+// ||: The first truthy value gets returned, if there is none, the operation will equal to the last falsy value.
