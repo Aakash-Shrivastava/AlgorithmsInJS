@@ -47,9 +47,9 @@ Eg.
     transition-timing-function: ease-in; 
     */
 
-  div {
+  /* div {
     transition: <property> <duration> <timing-function> <delay>;
-  }
+  } */
 
   div {
     transition: width 1s ease-in;
@@ -57,7 +57,7 @@ Eg.
     height: 30px;
     background-color: red;
   }
-  ` div:hover {
+  div:hover {
     width: 300px;
   }
 
@@ -83,4 +83,27 @@ Eg.
       transform: translate3d(0px, 0px, 0px);
     }
   }
+</style>
+
+<!-- CSS Mixins -->
+<style>
+  /* Native */
+  :root {
+    --my-mixin: {
+      background: #256dbd;
+      color: #f5f5f5;
+    }
+  }
+  body {
+    @apply --my-mixin;
+  }
+
+  /* scss */
+  /* @mixin my-mixin {
+    background: #256dbd;
+    color: #f5f5f5;
+  }
+  body {
+    @include my-mixin;
+  } */
 </style>
