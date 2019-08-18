@@ -156,12 +156,20 @@ var car = {
 
 
 // 2. New Operator or Constructor
-function Car(model, color) {
-    this.model = model;
-    this.color = color;
-}
-var c1 = new Car('BMW', 'red');
-console.log(c1.model);
+        function Car(model, color) {
+            this.model = model;
+            this.color = color;
+        }
+        var c1 = new Car('BMW', 'red');
+        console.log(c1.model);
+
+
+        // Singleton pattern:
+        var l = new function(){
+        this.name = "hello";
+        }
+
+        var d = new Object();
 
 
 //3. Class
@@ -225,3 +233,9 @@ let b = a.slice(0)
 // Operators
 // && : The first falsy value gets returned, if there is none, the last truthy value is being returned.
 // ||: The first truthy value gets returned, if there is none, the operation will equal to the last falsy value.
+
+
+
+// Functional programming (often abbreviated FP) is the process of building software by composing pure functions,
+// avoiding shared state, mutable data, and side-effects. 
+// functions are first class citiezens in javascript
