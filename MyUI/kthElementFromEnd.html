@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="link">0</div>
+  <div class="link">1</div>
+  <div class="link">2</div>
+  <div class="link">3</div>
+  <div class="link">4</div>
+  <div class="link">5</div>
+  <div class="link">6</div>
+  <div class="link">7</div>
+  <div class="link">8</div>
+  <div class="link">9</div>
+</div>
+
+<script>
+  const head = document.querySelector(".link");
+  turnKthFromLastRed(head, 2);
+
+  const turnKthFromLastRed = (head, k) => {
+    let leader = head;
+    let follower = head;
+
+    while (leader.nextElementSibling) {
+      if (k > 1) {
+        k--;
+      } else {
+        follower = follower.nextElementSibling;
+      }
+
+      leader = leader.nextElementSibling;
+    }
+
+    if (k === 1) {
+      follower.style.background = "red";
+    }
+  };
+</script>
