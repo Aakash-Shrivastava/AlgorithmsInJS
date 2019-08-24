@@ -13,24 +13,22 @@
 
 <script>
   const head = document.querySelector(".link");
-  turnKthFromLastRed(head, 2);
 
-  const turnKthFromLastRed = (head, k) => {
+  var turnKthFromLastRed = (head, k) => {
     let leader = head;
     let follower = head;
 
-    while (leader.nextElementSibling) {
-      if (k > 1) {
-        k--;
-      } else {
-        follower = follower.nextElementSibling;
+    for (i = 1; i < k; i++) {
+      if (leader.nextElementSibling) {
+        leader = leader.nextElementSibling;
       }
+    }
 
+    while (leader.nextElementSibling) {
       leader = leader.nextElementSibling;
+      follower = follower.nextElementSibling;
     }
-
-    if (k === 1) {
-      follower.style.background = "red";
-    }
+    follower.style.background = "red";
   };
+  turnKthFromLastRed(head, 5);
 </script>

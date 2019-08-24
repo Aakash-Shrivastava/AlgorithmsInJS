@@ -1,5 +1,8 @@
-{/* <img class="lazy" src="placeholder-image.jpg" data-src="image-to-lazy-load-1x.jpg" data-srcset="image-to-lazy-load-2x.jpg 2x, image-to-lazy-load-1x.jpg 1x" alt="I'm an image!"> */}
-
+<img 
+class="lazy" src="placeholder-image.jpg" 
+data-src="image-to-lazy-load-1x.jpg" 
+data-srcset="image-to-lazy-load-2x.jpg 2x, image-to-lazy-load-1x.jpg 1x" 
+alt="I'm an image!"></img>
 
 // On the document's DOMContentLoaded event, this script queries the DOM for all <img> 
 // elements with a class of lazy. If intersection observer is available, we create a new observer 

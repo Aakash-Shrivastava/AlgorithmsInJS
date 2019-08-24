@@ -1,3 +1,14 @@
+// Recursive fibonnaci
+var fibonnaci = function(n) {
+    if(n <= 2) {
+        return 1;
+    } else {
+        return fibonnaci(n - 1) + fibonnaci(n - 2);
+    }
+};
+console.log(fibonnaci(8))
+
+
 // Fibonnaci
 
 function fibonacciRecursiveObjDefault(num, cache = {}) {
