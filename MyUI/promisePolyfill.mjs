@@ -1,4 +1,4 @@
-class Promifill {
+export default class Promifill {
     constructor(executor) {
 
         this.status = "PENDING";
@@ -8,7 +8,7 @@ class Promifill {
         this.onFinally = undefined;
 
 
-        if (typeof executor != "function") {
+        if (typeof executor !== "function") {
             throw new TypeError(`Promise resolver must be a function`);
         }
 
@@ -61,24 +61,21 @@ class Promifill {
     }
 }
 
-let getCountryList = function () {
-    return new Promifill((resolve, reject) => {
-        fetch('https://restcountries.eu/rest/v2/all')
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (response) {
-                resolve(response);
-            })
-            .catch((e) => {
-                reject(e);
-            })
-    })
-}
+let getCountryList = new Promifill((resolve, reject) => {
+    fetch('https://restcountries.eu/rest/v2/all')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            resolve(response);
+        })
+        .catch((e) => {
+            reject(e);
+        })
+});
 
-getCountryList()
-    .then((val) => {
-        console.log(val)
-    }).catch((e) => {
-        console.log(e);
-    })
+getCountryList.then((val) => {
+    console.log(val)
+}).catch((e) => {
+    console.log(e);
+})

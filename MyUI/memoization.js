@@ -9,7 +9,7 @@ var fibonnaci = function(n) {
 console.log(fibonnaci(8))
 
 
-// Fibonnaci
+// Fibonnaci Memoization
 
 function fibonacciRecursiveObjDefault(num, cache = {}) {
     //base case as normal

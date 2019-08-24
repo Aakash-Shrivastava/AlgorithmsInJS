@@ -1,4 +1,4 @@
-function getElementsByAttribute(attribute){
+  function getElementsByAttribute(attribute){
     var allElements = document.getElementsByTagName('*'), 
         elm,
         found=[];
