@@ -21,7 +21,7 @@ class Promifill {
 
     resolve(value) {
         this.value = value;
-        this.state = "FULFILLED";
+        this.status = "FULFILLED";
 
         this.thenCallBacks.forEach((myFunc) => {
             myFunc(this.value);
@@ -34,7 +34,7 @@ class Promifill {
 
     reject(reason) {
         this.value = reason;
-        this.state = "REJECTED";
+        this.status = "REJECTED";
 
         if (typeof this.onCatch === "function") {
             this.onCatch(this.value);
