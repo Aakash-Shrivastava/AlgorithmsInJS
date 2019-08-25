@@ -1,0 +1,59 @@
+<div id="wrapper">
+  <div class="link">0</div>
+  <div class="link">1</div>
+  <div class="link">2</div>
+  <div class="link">3</div>
+  <div class="link">4</div>
+  <div class="link">5</div>
+  <div class="link">6</div>
+  <div id="link">7</div>
+  <div class="link">8</div>
+  <div class="link">9</div>
+</div>
+
+<script>
+
+class Widget{
+    constructor(width,height){
+        this.width = width || 50;
+        this.height = height || 50;
+        this.element = null;
+    }
+    render(id){
+        if(this.element){
+            this.element.style.width = this.width;
+            this.element.style.height = this.height;
+
+            document.getElementById(id).appendChild(this.element)
+        }
+    }
+}
+
+class Button extends Widget{
+    constructor(width,height,label){
+        super(width,height);
+        this.label = label || "Default";
+
+        let myButton = document.createElement("button")
+        myButton.textContent = this.label;
+        this.element = myButton;
+    }
+    render(id){
+        this.element.onclick = this.onClick.bind(this);
+        super.render(id);
+    }
+    onClick(event){
+        alert(`Button ${this.label} clicked`);
+    }
+}
+
+document.onreadystatechange = function(){
+    if(document.readyState === "complete"){
+        var btn1 = new Button(125,30,"Hello");
+        var btn2 = new Button(150,40,"World");
+
+        btn1.render("wrapper");
+        btn2.render("link");
+    }
+}
+</script>
