@@ -28,8 +28,8 @@ class PromifillAll {
 
     resolve(value) {
         this.values.push(value);
-        this.status = "FULFILLED";
         if (this.values.length === this.totalPromises) {
+            this.status = "FULFILLED";
             this.thenCallBacks.forEach((myFunc) => {
                 myFunc(this.values);
             })
