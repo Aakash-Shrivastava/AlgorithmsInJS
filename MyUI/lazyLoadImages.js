@@ -24,7 +24,16 @@ document.addEventListener("DOMContentLoaded", function () {
           lazyImageObserver.unobserve(lazyImage);
         }
       });
-    });
+    },
+    //second paramter is options
+    // let options = {
+    //   root: document.querySelector('#scrollArea'),
+    //   rootMargin: '0px',
+    //   threshold: 1.0
+    // }
+    //
+    //options
+    );
 
     lazyImages.forEach(function (lazyImage) {
       lazyImageObserver.observe(lazyImage);
