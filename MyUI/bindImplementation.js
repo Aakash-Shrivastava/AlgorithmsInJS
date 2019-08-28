@@ -16,5 +16,5 @@ let printName = function (hometown, state, country) {
     console.log(this.firstname + " " + this.lastname + " , " + hometown + ", " + state + ", " + country);
 }
 
-let printMyName2 = printName.mybind(name, "Dehradun", "Uttarakhand");
+let printMyName2 = printName.mybind(name, "Bangaluru", "Karnataka");
 printMyName2("India");

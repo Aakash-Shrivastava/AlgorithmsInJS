@@ -24,7 +24,8 @@ var makeString = function (myObj) {
             makeString(newval);
         }
     })
+    return arrayOfString.join(" ");
 }
-makeString(myObj);
 
-console.log(arrayOfString.join(" "));
+
+console.log(makeString(myObj));
