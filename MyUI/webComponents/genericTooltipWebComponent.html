@@ -12,20 +12,23 @@
 </div>
 
 
-
-
-
 <script type="text/javascript">
-  
+  const template = document.createElement('template');
+  template.innerHTML = `<slot/><style>*{color:blue}</style>`;
+
   class HowtoTooltip extends HTMLElement {
     constructor() {
       super();
       this.show = this.show.bind(this);
       this.hide = this.hide.bind(this);
       this.target = null;
+
+      this.attachShadow({mode: 'open'});
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
     connectedCallback() {
+  
       if (!this.hasAttribute("role")) this.setAttribute("role", "tooltip");
 
       if (!this.hasAttribute("tabindex")) this.setAttribute("tabindex", -1);
