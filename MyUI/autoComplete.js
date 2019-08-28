@@ -1,7 +1,7 @@
 let countryMap = {};
 let allCountries;
 
-let resultConatiner = document.getElementById("result-container");
+let resultContainer = document.getElementById("result-container");
 let jsonContainer = document.getElementById("json-container");
 let inputContainer = document.getElementById("input-container");
 let listElements = document.getElementsByClassName("country-list");
@@ -15,8 +15,8 @@ function searchCountryList(event) {
   let inputText = event.target.value.toLowerCase();
 
   if (inputText !== "" && ((event.keyCode >= 48 && event.keyCode <= 90) || event.keyCode == 8)) {
-    while (resultConatiner.firstChild) {
-      resultConatiner.removeChild(resultConatiner.firstChild);
+    while (resultContainer.firstChild) {
+      resultContainer.removeChild(resultContainer.firstChild);
     }
     let searchresults = searchList(allCountries, inputText);
     //console.log(searchresults);
@@ -33,7 +33,7 @@ function searchCountryList(event) {
         fragment.appendChild(div);
       })
 
-      resultConatiner.appendChild(fragment)
+      resultContainer.appendChild(fragment)
     } else {
       let fragment = document.createDocumentFragment();
 
@@ -42,7 +42,7 @@ function searchCountryList(event) {
       div.textContent = `No Results...`
       fragment.appendChild(div);
 
-      resultConatiner.appendChild(fragment)
+      resultContainer.appendChild(fragment)
     }
     listElements[0].classList.add("selected");
   } else if (event.keyCode == 8 && inputText == "") {
@@ -84,8 +84,8 @@ function searchCountryList(event) {
       let selectedNode = document.querySelector(".country-list.selected");
       countryClicked(null, selectedNode.getAttribute("data-code"))
     } else if (!inputText) {
-      while (resultConatiner.firstChild) {
-        resultConatiner.removeChild(resultConatiner.firstChild);
+      while (resultContainer.firstChild) {
+        resultContainer.removeChild(resultContainer.firstChild);
       }
     }
   }
@@ -97,8 +97,8 @@ function countryClicked(event, code) {
 
   document.getElementById("countryText").value = "";
 
-  while (resultConatiner.firstChild) {
-    resultConatiner.removeChild(resultConatiner.firstChild);
+  while (resultContainer.firstChild) {
+    resultContainer.removeChild(resultContainer.firstChild);
   }
 
   let countryCode = event ? event.target.getAttribute("data-code") : code;
