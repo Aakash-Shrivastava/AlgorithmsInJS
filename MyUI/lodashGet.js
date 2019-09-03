@@ -14,7 +14,7 @@ let a = {
     "efdarehl": {
         "odinthsuca": "rwjhmbfus",
         "noihjtjen": 27.73332043042913,
-        "brspkaagb": { "lnuiabcfd": 5767 }
+        "brspkaagb": { "lnuiabcfd": 5767 
     }
 };
 
