@@ -1,0 +1,94 @@
+<div id="input-container" class="input-container">
+  <input
+    type="text"
+    id="countryText"
+    name="countryText"
+    placeholder="Enter the country name to search"
+    onkeyup="searchCountryList(event)"
+  />
+</div>
+
+<div id = "dropdown">
+    <div id="result-container" class="result-container"></div>
+</div>
+
+<div id="json-container" class="json-container"></div>
+
+<style>
+  body {
+    font-family: monospace;
+  }
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 12px 20px;
+    height: 37px;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+  }
+  .json-container {
+    padding: 5px;
+  }
+  .country-list {
+    border: 1px solid #d4d4d4;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+    border-radius: 2px;
+  }
+  .country-list:hover {
+    background-color: #e9e9e9;
+  }
+  .country-tag {
+    display: inline;
+    padding: 0.2em 0.6em 0.3em;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25em;
+    background-color: #5bc0de;
+    margin-right: 2px;
+    height: 25px;
+    line-height: 30px;
+    top: 3px;
+    position: relative;
+  }
+  .remove::after {
+    content: "x";
+    padding: 0px 2px;
+    margin: 0px -2px 0px 8px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .input-container{
+    display: flex;
+    padding: 0 5px;
+    height: 37px;
+    border: 1px solid #dad9d9;
+    border-radius: 3px;
+    overflow-x: scroll;
+  }
+  .result-container{
+    max-height: 200px;
+    overflow: scroll;
+    margin-bottom: 20px;
+  }
+  .selected {
+    background-color: #e9e9e9;
+  }
+</style>
+
+<script src="autoComplete.js"></script>
