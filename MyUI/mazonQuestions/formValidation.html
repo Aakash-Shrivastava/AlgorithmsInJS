@@ -1,0 +1,45 @@
+<form name="testform" id="testform" method="post" action="">
+    <p><label for="element1">first name: * <input type="text" name="user.firstName" class="form-element" id="element1"
+                value="" required="true" data-error="missing first name" /></label></p>
+    <p><label for="element2">last name: * <input type="text" name="user.lastName" class="form-element" id="element2"
+                value="" required="true" data-error="missing last name" /></label></p>
+    <p><label for="element3">email address: * <input type="text" name="details.contact.email" class="form-element"
+                id="element3" value="" required="true" data-error="missing email address" /></label></p>
+    <p><label for="element4">phone number: * <input type="text" name="details.contact.phone" class="form-element"
+                id="element4" value="" required="true" data-error="missing phone" /></label></p>
+    <input type="button" value="Submit Form" onclick="processForm();" /> <a href="javascript:;"
+        onclick="resetForm();">Reset</a>
+</form>
+
+<script type="text/javascript">
+    window.processForm = function () {
+
+        let form = document.getElementById("testform");
+        let fields = form.fields;
+
+        var inputElements = Array.from(document.querySelectorAll('.form-element'));
+        var statusDiv = document.getElementById('status');
+        var errorDiv = document.createElement('div');
+        var proceed = null;
+
+        for (i = 0; i < inputElements.length; i++) {
+            if (i === inputElements.length - 1) {
+                proceed = true;
+            }
+
+            if (inputElements[i].getAttribute("required") == "true" && inputElements[i].value == '') {
+                let errorElement = document.createElement('div');
+                errorElement.textContent = inputElements[i].getAttribute("data-error");
+                errorDiv.appendChild(errorElement);
+                proceed = false;
+            }
+        }
+
+        statusDiv.innerHTML = '';
+        if (proceed) {
+            alert('Form Submission here.');
+        } else {
+            statusDiv.appendChild(errorDiv);
+        }
+    }
+</script>
