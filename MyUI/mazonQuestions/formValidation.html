@@ -17,29 +17,11 @@
         let form = document.getElementById("testform");
         let fields = form.fields;
 
-        var inputElements = Array.from(document.querySelectorAll('.form-element'));
-        var statusDiv = document.getElementById('status');
-        var errorDiv = document.createElement('div');
-        var proceed = null;
+        fields.forEach(element => {
+            let name = element.name;
+            let value = element.value;
 
-        for (i = 0; i < inputElements.length; i++) {
-            if (i === inputElements.length - 1) {
-                proceed = true;
-            }
-
-            if (inputElements[i].getAttribute("required") == "true" && inputElements[i].value == '') {
-                let errorElement = document.createElement('div');
-                errorElement.textContent = inputElements[i].getAttribute("data-error");
-                errorDiv.appendChild(errorElement);
-                proceed = false;
-            }
-        }
-
-        statusDiv.innerHTML = '';
-        if (proceed) {
-            alert('Form Submission here.');
-        } else {
-            statusDiv.appendChild(errorDiv);
-        }
+            createTreeStructure(name,value)
+        });
     }
 </script>
